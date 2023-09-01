@@ -6,13 +6,13 @@ var groupAnagrams = function(strs) {
     let map = {}
 
     for (let i = 0; i < strs.length; i++) {
-        let sort = strs[i].split("").sort().join("")
+        let sorted = strs[i].split("").sort().join("")
 
-        if (!map[sort]) {
-            map[sort] = []
+        if (!map[sorted]) {
+            map[sorted] = []
         }
 
-        map[sort].push(strs[i])
+        map[sorted].push(strs[i])
     }
 
     return Object.values(map)
