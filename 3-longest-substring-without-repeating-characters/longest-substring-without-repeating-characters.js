@@ -6,7 +6,7 @@ var lengthOfLongestSubstring = function(s) {
     let set = new Set()
     let left = 0
     let right = 0
-    let max = 0
+    let ans = 0
 
     while (right < s.length) {
         while (set.has(s[right])) {
@@ -15,9 +15,9 @@ var lengthOfLongestSubstring = function(s) {
         }
 
         set.add(s[right])
-        max = Math.max(max, right - left + 1)
+        ans = Math.max(ans, right - left + 1)
         right++
     }
 
-    return max
+    return ans
 };
