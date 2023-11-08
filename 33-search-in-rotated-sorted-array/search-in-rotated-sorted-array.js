@@ -3,7 +3,7 @@
  * @param {number} target
  * @return {number}
  */
-var search = function(nums, target) {
+var search = function (nums, target) {
     let left = 0
     let right = nums.length - 1
 
@@ -15,7 +15,7 @@ var search = function(nums, target) {
         }
 
         if (nums[left] <= nums[mid]) {
-            if (target < nums[left] || target > nums[mid]) {
+            if (nums[mid] < target || nums[left] > target) {
                 left = mid + 1
             }
             else {
@@ -23,7 +23,7 @@ var search = function(nums, target) {
             }
         }
         else {
-            if (target > nums[right] || target < nums[mid]) {
+            if (nums[mid] > target || nums[right] < target) {
                 right = mid - 1
             }
             else {
