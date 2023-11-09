@@ -20,21 +20,20 @@ var isSubtree = function (root, subRoot) {
         return false
     }
 
-    if (same(root, subRoot)) {
+    if (sameTree(root, subRoot)) {
         return true
     }
-    else {
-        return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot)
-    }
+
+    return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot)
 };
 
-function same(tree1, tree2) {
+function sameTree(tree1, tree2) {
     if (!tree1 && !tree2) {
         return true
     }
 
     if (tree1 && tree2 && tree1.val === tree2.val) {
-        return same(tree1.left, tree2.left) && same(tree1.right, tree2.right)
+        return sameTree(tree1.left, tree2.left) && sameTree(tree1.right, tree2.right)
     }
     else {
         return false
