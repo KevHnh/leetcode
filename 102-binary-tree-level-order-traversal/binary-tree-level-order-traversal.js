@@ -25,7 +25,6 @@ var levelOrder = function(root) {
             if (curr.left) {
                 q.push(curr.left)
             }
-            
             if (curr.right) {
                 q.push(curr.right)
             }
