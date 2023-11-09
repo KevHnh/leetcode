@@ -9,27 +9,27 @@
  * @param {ListNode} head
  * @return {void} Do not return anything, modify head in-place instead.
  */
-var reorderList = function(head) {
-    let stack = []
-    let tail = head
+var reorderList = function (head) {
+  let curr = head
+  let stack = []
 
-    while (tail) {
-        stack.push(tail)
-        tail = tail.next
+  while (curr) {
+    stack.push(curr)
+    curr = curr.next
+  }
+
+  let len = stack.length
+
+  for (let i = 0; i < len; i++) {
+    if (i % 2 === 0) {
+      head.next = stack.shift()
+    }
+    else {
+      head.next = stack.pop()
     }
 
-    let len = stack.length
+    head = head.next
+  }
 
-    for (let i = 0; i < len; i++) {
-        if (i % 2 === 0) {
-            head.next = stack.shift()
-        }
-        else {
-            head.next = stack.pop()
-        }
-
-        head = head.next
-    }
-
-    head.next = null
+  head.next = null
 };
