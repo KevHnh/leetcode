@@ -10,15 +10,15 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
-var isValidBST = function(root) {
+var isValidBST = function (root) {
     function validate(node, left, right) {
         if (!node) {
             return true
         }
-        else if (!(left < node.val && node.val < right)) {
-            return false
+        if (node.val <= left || node.val >= right) {
+            return false;
         }
-        
+
         return validate(node.left, left, node.val) && validate(node.right, node.val, right)
     }
 
