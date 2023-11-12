@@ -11,16 +11,16 @@
  * @return {boolean}
  */
 var isValidBST = function (root) {
-    function validate(node, left, right) {
-        if (!node) {
+    function validate(curr, left, right) {
+        if (!curr) {
             return true
         }
 
-        if (node.val <= left || node.val >= right) {
+        if (curr.val <= left || curr.val >= right) {
             return false
         }
 
-        return validate(node.left, left, node.val) && validate(node.right, node.val, right)
+        return validate(curr.left, left, curr.val) && validate(curr.right, curr.val, right) 
     }
 
     return validate(root, -Infinity, Infinity)
