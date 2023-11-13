@@ -3,11 +3,11 @@
  * @param {number} k
  * @return {number}
  */
-var characterReplacement = function (s, k) {
+var characterReplacement = function(s, k) {
     let map = {}
+    let maxChar = 0
     let left = 0
     let right = 0
-    let maxChar = 0
     let ans = 0
 
     while (right < s.length) {
