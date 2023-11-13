@@ -4,10 +4,6 @@
  * @return {string}
  */
 var minWindow = function (s, t) {
-    if (t.length > s.length) {
-        return ""
-    }
-
     let map = {}
 
     for (let i = 0; i < t.length; i++) {
