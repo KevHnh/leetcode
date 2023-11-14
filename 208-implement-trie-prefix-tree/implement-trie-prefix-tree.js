@@ -14,7 +14,10 @@ class Trie {
         let node = this.root
 
         for (let char of word) {
-            node.children[char] = node.children[char] || new TrieNode()
+            if (!node.children[char]) {
+                node.children[char] = new TrieNode()
+            }
+
             node = node.children[char]
         }
 
@@ -34,7 +37,7 @@ class Trie {
 
         return node.isWord
     }
-    
+
     startsWith(prefix) {
         let node = this.root
 
