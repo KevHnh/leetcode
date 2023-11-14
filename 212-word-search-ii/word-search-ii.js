@@ -3,7 +3,7 @@
  * @param {string[]} words
  * @return {string[]}
  */
-var findWords = function(board, words) {
+var findWords = function (board, words) {
     let root = buildTrie(words)
     let res = []
 
@@ -17,15 +17,14 @@ var findWords = function(board, words) {
             return
         }
 
-
-        let c = board[i][j]
+        let char = board[i][j]
 
         board[i][j] = "#"
-        dfs(node[c], i + 1, j)
-        dfs(node[c], i, j + 1)
-        dfs(node[c], i - 1, j)
-        dfs(node[c], i, j - 1)
-        board[i][j] = c
+        dfs(node[char], i + 1, j)
+        dfs(node[char], i - 1, j)
+        dfs(node[char], i, j + 1)
+        dfs(node[char], i, j - 1)
+        board[i][j] = char
     }
 
     for (let i = 0; i < board.length; i++) {
