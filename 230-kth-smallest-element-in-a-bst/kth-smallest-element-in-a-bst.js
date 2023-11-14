@@ -14,7 +14,7 @@
 var kthSmallest = function(root, k) {
     let stack = []
     let curr = root
-
+    
     while (stack || curr) {
         while (curr) {
             stack.push(curr)
