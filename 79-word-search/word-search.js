@@ -9,7 +9,7 @@ var exist = function (board, word) {
             return true
         }
 
-        if (row < 0 || col < 0 || row > board.length - 1 || col > board[0].length - 1 || board[row][col] !== word[i]) {
+        if (Math.min(row, col) < 0 || row > board.length - 1 || col > board[0].length - 1 || board[row][col] !== word[i]) {
             return false
         }
 
