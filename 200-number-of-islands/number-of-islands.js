@@ -2,31 +2,30 @@
  * @param {character[][]} grid
  * @return {number}
  */
-var numIslands = function(grid) {
-    let ROWS = grid.length
-    let COLS = grid[0].length
-    let res = 0
-
-    function dfs(r, c) {
-        if (Math.min(r, c) < 0 || r >= ROWS || c >= COLS || grid[r][c] === "0") {
+var numIslands = function (grid) {
+    function dfs(row, col) {
+        if (Math.min(row, col) < 0 || row >= grid.length || col >= grid[0].length || grid[row][col] === "0") {
             return 0
         }
 
-        grid[r][c] = "0"
-        dfs(r + 1, c)
-        dfs(r - 1, c)
-        dfs(r, c + 1)
-        dfs(r, c - 1)
+        grid[row][col] = "0"
+        dfs(row + 1, col)
+        dfs(row - 1, col)
+        dfs(row, col + 1)
+        dfs(row, col - 1)
 
         return 1
     }
 
-    for (let i = 0; i < ROWS; i++) {
-        for (let j = 0; j < COLS; j++) {
+    let ans = 0
+
+    for (let i = 0; i < grid.length; i++) {
+        for (let j = 0; j < grid[0].length; j++) {
             if (grid[i][j] === "1") {
-                res += dfs(i, j)
+                ans += dfs(i, j, 0)
             }
         }
     }
-    return res
+
+    return ans
 };
