@@ -15,7 +15,7 @@ var cloneGraph = function(node) {
 
     function dfs(node) {
         if (!node) {
-            return node
+            return null
         }
 
         if (visited[node.val]) {
@@ -24,7 +24,7 @@ var cloneGraph = function(node) {
 
         let root = new Node(node.val)
         visited[node.val] = root
-
+        
         for (let neighbor of node.neighbors) {
             root.neighbors.push(dfs(neighbor))
         }
