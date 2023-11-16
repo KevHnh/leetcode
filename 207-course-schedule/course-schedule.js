@@ -5,6 +5,7 @@
  */
 var canFinish = function(numCourses, prerequisites) {
     let preMap = {}
+    let visited = {}
 
     for (let i = 0; i < prerequisites.length; i++) {
         if (preMap[prerequisites[i][0]]) {
@@ -14,8 +15,6 @@ var canFinish = function(numCourses, prerequisites) {
             preMap[prerequisites[i][0]] = [prerequisites[i][1]]
         }
     }
-
-    let visited = new Set()
 
     function dfs(node) {
         if (visited[node]) {
