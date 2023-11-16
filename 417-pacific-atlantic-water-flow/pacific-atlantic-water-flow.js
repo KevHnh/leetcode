@@ -9,16 +9,16 @@ var pacificAtlantic = function(heights) {
     let atl = new Set()
     let res = []
 
-    function dfs(r, c, visit, prevHeight) {
-        if (Math.min(r, c) < 0 || r >= ROWS || c >= COLS || visit.has(r + "-" + c) || heights[r][c] < prevHeight) {
+    function dfs(r, c, visited, prev) {
+        if (Math.min(r, c) < 0 || r >= ROWS || c >= COLS || visited.has(r + "-" + c) || heights[r][c] < prev) {
             return
         }
 
-        visit.add(r + "-" + c)
-        dfs(r + 1, c, visit, heights[r][c])
-        dfs(r - 1, c, visit, heights[r][c])
-        dfs(r, c + 1, visit, heights[r][c])
-        dfs(r, c - 1, visit, heights[r][c])
+        visited.add(r + "-" + c)
+        dfs(r + 1, c, visited, heights[r][c])
+        dfs(r - 1, c, visited, heights[r][c])
+        dfs(r, c + 1, visited, heights[r][c])
+        dfs(r, c - 1, visited, heights[r][c])
     }
 
     for (let r = 0; r < ROWS; r++) {
@@ -31,10 +31,10 @@ var pacificAtlantic = function(heights) {
         dfs(ROWS - 1, c, atl, heights[ROWS - 1][c])
     }
 
-    for (let i = 0; i < ROWS; i++) {
-        for (let j = 0; j < COLS; j++) {
-            if (pac.has(i + "-" + j) && atl.has(i + "-" + j) ) {
-                res.push([i, j])
+    for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+            if (pac.has(r + "-" + c) && atl.has(r + "-" + c)) {
+                res.push([r, c])
             }
         }
     }
