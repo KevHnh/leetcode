@@ -3,7 +3,7 @@
  * @param {number[][]} prerequisites
  * @return {boolean}
  */
-var canFinish = function(numCourses, prerequisites) {
+var canFinish = function (numCourses, prerequisites) {
     let preMap = {}
     let visited = {}
 
@@ -28,8 +28,8 @@ var canFinish = function(numCourses, prerequisites) {
 
             visited[node] = true
 
-            for (let val of preMap[node]) {
-                if (!dfs(val)) {
+            for (let pre of preMap[node]) {
+                if (!dfs(pre)) {
                     return false
                 }
             }
