@@ -9,11 +9,11 @@ var merge = function(intervals) {
     for (let i = 1; i < intervals.length; i++) {
         let prev = res[res.length - 1]
 
-        if (prev[1] >= intervals[i][0]) {
-            prev[1] = Math.max(intervals[i][1], prev[1])
+        if (prev[1] < intervals[i][0]) {
+            res.push(intervals[i])
         }
         else {
-            res.push(intervals[i])
+            prev[1] = Math.max(prev[1], intervals[i][1])
         }
     }
 
