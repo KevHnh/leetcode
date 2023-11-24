@@ -16,8 +16,8 @@ var rob = function(nums) {
         return memo[memo.length - 1]
     }
 
-    let case1 = nums.slice(1)
-    let case2 = nums.slice(0, nums.length - 1)
+    let case1 = helper(nums.slice(1))
+    let case2 = helper(nums.slice(0, nums.length - 1))
 
-    return Math.max(helper(case1), helper(case2)) || nums[0]
+    return Math.max(case1, case2) || nums[0]
 };
