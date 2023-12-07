@@ -3,25 +3,25 @@
  * @param {number} target
  * @return {number[][]}
  */
-var combinationSum = function (candidates, target) {
+var combinationSum = function(candidates, target) {
     let res = []
 
-    function dfs(i, cur, total) {
+    function dfs(cur, i, total) {
         if (total === target) {
-            res.push([...cur])
+            res.push([...cur]) 
             return
         }
 
-        if (total > target || i > candidates.length - 1) {
+        if (total > target || i >= candidates.length) {
             return
         }
 
         cur.push(candidates[i])
-        dfs(i, cur, total + candidates[i])
+        dfs(cur, i, total + candidates[i])
         cur.pop()
-        dfs(i + 1, cur, total)
+        dfs(cur, i + 1, total)
     }
 
-    dfs(0, [], 0)
+    dfs([], 0, 0)
     return res
 };
