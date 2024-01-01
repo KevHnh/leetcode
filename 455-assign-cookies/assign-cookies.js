@@ -21,7 +21,7 @@ var findContentChildren = function(g, s) {
             left++
         }
         else {
-            return ans
+            break
         }
     }
 
