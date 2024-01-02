@@ -4,15 +4,12 @@
  */
 var findMatrix = function (nums) {
     let map = {}
-    let ans = [[]]
+    let ans = []
 
     for (let i = 0; i < nums.length; i++) {
         if (map[nums[i]] === undefined) {
             map[nums[i]] = 0
-            ans[map[nums[i]]].push(nums[i])
         }  
-
-        map[nums[i]]++
 
         if (map[nums[i]] >= ans.length) {
             ans.push([nums[i]])
@@ -20,8 +17,9 @@ var findMatrix = function (nums) {
         else {
             ans[map[nums[i]]].push(nums[i])
         }
+
+        map[nums[i]]++
     }
 
-    ans.shift()
     return ans
 };
