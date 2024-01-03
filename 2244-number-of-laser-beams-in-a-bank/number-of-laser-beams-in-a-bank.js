@@ -2,8 +2,22 @@
  * @param {string[]} bank
  * @return {number}
  */
-const numberOfBeams = (bank) =>
-    bank
-        .map((str) => str.split("0").join("").length)
-        .filter((val) => val !== 0)
-        .reduce((acc, cur, ind, arr) => acc + cur * (arr[ind + 1] || 0), 0);
+var numberOfBeams = function (bank) {
+    let ans = 0
+    let row = 0
+
+    for (let i = 0; i < bank.length; i++) {
+        let curr = bank[i].split("0").join("").length // Number of lasers at i
+
+        if (curr === 0) {
+            continue
+        }
+        else {
+            ans += row * curr
+            row = curr
+            curr = 0
+        }
+    }
+
+    return ans
+};
