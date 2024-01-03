@@ -4,29 +4,29 @@
  */
 var numberOfBeams = function (bank) {
     let ans = 0
-    let left = 0
-    let right = 1
+    let row = 0
 
-    while (right < bank.length) {
-        let prev = bank[left].split("0").join("").length
-        let next = bank[right].split("0").join("").length
+    for (let i = 0; i < bank.length; i++) {
+        let curr = bank[i].split("0").join("").length
 
-        if (next === 0) {
-            right++
+        if (curr !== 0 && i === 0) {
+            row = curr
             continue
         }
 
-        if (prev === 0) {
-            left++
+        if (curr === 0) {
             continue
         }
-
-        if (left !== right) {
-            ans += prev * next
-            left = right
+        else {
+            ans += row * curr
+            row = curr
+            curr = 0
         }
 
-        right++
+        console.log("ANS: ", ans)
+        console.log("ROW: ", row)
+        console.log("CURR: ", curr)
+        console.log("----------")
     }
 
     return ans
