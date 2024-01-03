@@ -9,10 +9,7 @@ var numberOfBeams = function (bank) {
     for (let i = 0; i < bank.length; i++) {
         let curr = bank[i].split("0").join("").length // Number of lasers at i
 
-        if (curr === 0) {
-            continue
-        }
-        else {
+        if (curr !== 0) { // if current row contains lasers
             ans += row * curr
             row = curr
             curr = 0
