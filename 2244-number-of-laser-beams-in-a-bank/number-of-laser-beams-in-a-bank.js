@@ -8,8 +8,8 @@ var numberOfBeams = function (bank) {
     let right = 1
 
     while (right < bank.length) {
-        let prev = bank[left].replace(/[0]/gi, "").length
-        let next = bank[right].replace(/[0]/gi, "").length
+        let prev = bank[left].split("0").join("").length
+        let next = bank[right].split("0").join("").length
 
         if (next === 0) {
             right++
