@@ -3,20 +3,12 @@
  * @return {boolean}
  */
 var halvesAreAlike = function(s) {
-    let string1 = s.substring(0, s.length / 2).toLowerCase()
-    let string2 = s.substring(s.length / 2, s.length).toLowerCase()
-    let cnt1 = 0
-    let cnt2 = 0
-    let dict = {'a' : 1, 'e' : 1, 'i' : 1, 'o' : 1, 'u' : 1}
+    let half = Math.floor(s.length / 2)
+    let str1 = s.slice(0, half).toLowerCase()
+    let str2 = s.slice(half).toLowerCase()
 
-    for (let i = 0; i < s.length / 2; i++) {
-        if (dict[string1[i]]) {
-            cnt1++
-        }
-        if (dict[string2[i]]) {
-            cnt2++
-        }
-    }
+    str1 = str1.replace(/[aeiou]/gi, "")
+    str2 = str2.replace(/[aeiou]/gi, "")
 
-    return cnt1 === cnt2
+    return str1.length === str2.length
 };
