@@ -4,7 +4,7 @@
  */
 var increasingTriplet = function(nums) {
     let num1 = Infinity
-    let num2 = Infinity
+    let num2 = Infinity 
 
     for (let i = 0; i < nums.length; i++) {
         if (nums[i] > num2) {
