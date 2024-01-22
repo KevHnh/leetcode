@@ -11,9 +11,7 @@ var findErrorNums = function(nums) {
         !set.has(nums[i]) ? set.add(nums[i]) : dupe = nums[i]
     }
 
-    let arr = Array.from(set)
-
-    for (let i = 1; i < arr.length + 2; i++) {
+    for (let i = 1; i < nums.length + 1; i++) {
         if (!set.has(i)) {
             return [dupe, i]
         }
