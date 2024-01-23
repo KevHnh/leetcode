@@ -3,29 +3,21 @@
  * @return {number}
  */
 var maxLength = function(arr) {
-    let strings = []
+    let res = 0;
 
-    function dfs(curr, index) {
-        if (index === arr.length) {
-            strings.push(curr.join(""))
-            return
+    let solve = (start, curr) => {
+        if (curr.length !== new Set(curr.split('')).size) {
+            return;
         }
+        
+        res = Math.max(res, curr.length);
 
-        dfs(curr.concat(arr[index]), index + 1)
-        dfs(curr, index + 1)
-    }
-
-    dfs([], 0)
-    let max = 0
-
-    for (let i = 0; i < strings.length; i++) {
-        let setSize = new Set(strings[i]).size
-        let length = strings[i].length
-
-        if (length === setSize) {
-            max = Math.max(length, max)
+        for (let i = start; i < arr.length; i++) {
+            solve(i + 1, `${curr}${arr[i]}`);
         }
     }
 
-    return max
+    solve(0, '');
+
+    return res;
 };
