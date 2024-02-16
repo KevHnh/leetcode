@@ -11,16 +11,18 @@ var findLeastNumOfUniqueInts = function (arr, k) {
     }
 
     let cnt = Object.values(map).sort((a, b) => a - b)
+    let ans = cnt.length
 
     while (k > 0) {
         cnt[0]--
 
         if (cnt[0] === 0) {
             cnt.shift()
+            ans--
         }
 
         k--
     }
 
-    return cnt.length
+    return ans
 };
