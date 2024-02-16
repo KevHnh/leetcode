@@ -4,25 +4,27 @@
  * @return {number}
  */
 var findLeastNumOfUniqueInts = function (arr, k) {
-    let map = {}
+    let map = {};
 
-    for (let i = 0; i < arr.length; i++) {
-        map[arr[i]] ? map[arr[i]]++ : map[arr[i]] = 1
+    for (let num of arr) {
+        map[num] ? map[num]++ : (map[num] = 1);
     }
 
-    let cnt = Object.values(map).sort((a, b) => a - b)
-    let ans = cnt.length
+    let pq = new MinPriorityQueue();
 
-    while (k > 0) {
-        cnt[0]--
+    for (let count of Object.values(map)) {
+        pq.enqueue(count, count);
+    }
 
-        if (cnt[0] === 0) {
-            cnt.shift()
-            ans--
+    while (k > 0 && !pq.isEmpty()) {
+        let count = pq.dequeue().element;
+        if (k >= count) {
+            k -= count;
+        } else {
+            pq.enqueue(count - k, count - k);
+            k = 0;
         }
-
-        k--
     }
 
-    return ans
+    return pq.size();
 };
