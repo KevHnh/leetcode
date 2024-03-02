@@ -2,17 +2,18 @@
  * @param {number[]} nums
  * @return {number[]}
  */
-var sortedSquares = function(A) {
-    let result = [];
-    let l = 0;
-    let r = A.length - 1;
-    let p = r;
+var sortedSquares = function(nums) {
+    let left = 0, right = nums.length - 1;
 
-    while (l <= r) {
-        if (A[l] ** 2 > A[r] ** 2) {
-            result[p--] = A[l++] ** 2;
+    const result = new Array(nums.length);
+
+    for (let i = nums.length - 1; i >= 0; i--) {
+        if (Math.abs(nums[right]) > Math.abs(nums[left])) {
+            result[i] = nums[right] ** 2;
+            right--;
         } else {
-            result[p--] = A[r--] ** 2;
+            result[i] = nums[left] ** 2;
+            left++;
         }
     }
 
