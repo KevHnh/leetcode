@@ -4,12 +4,7 @@
  * @return {number[]}
  */
 var intersection = function (nums1, nums2) {
-    let set = new Set()
-
-    for (let i = 0; i < nums1.length; i++) {
-        set.add(nums1[i])
-    }
-
+    let set = new Set(nums1)
     let ans = []
 
     for (let i = 0; i < nums2.length; i++) {
