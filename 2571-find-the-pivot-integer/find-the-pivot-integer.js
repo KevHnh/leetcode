@@ -4,27 +4,21 @@
  */
 var pivotInteger = function (n) {
     if (n === 1) {
-        return 1
+        return 1;
     }
 
-    let sum = 0
+    let totalSum = (n * (n + 1)) / 2;
+    let leftSum = 0;
 
     for (let i = 1; i <= n; i++) {
-        sum += i
-    }
+        leftSum += i;
 
-    let leftSum = sum
-    let rightSum = sum
-
-    for (let i = n; i >= 1; i--) {        
-        leftSum -= i
-        rightSum = sum
-        rightSum -= leftSum + i
+        let rightSum = totalSum - leftSum + i;
 
         if (leftSum === rightSum) {
-            return i
+            return i;
         }
     }
 
-    return -1
+    return -1;
 };
