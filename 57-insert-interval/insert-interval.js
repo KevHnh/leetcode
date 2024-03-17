@@ -3,7 +3,7 @@
  * @param {number[]} newInterval
  * @return {number[][]}
  */
-var insert = function(intervals, newInterval) {
+var insert = function (intervals, newInterval) {
     let res = []
 
     for (let i = 0; i < intervals.length; i++) {
