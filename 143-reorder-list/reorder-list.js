@@ -10,26 +10,26 @@
  * @return {void} Do not return anything, modify head in-place instead.
  */
 var reorderList = function (head) {
-  let curr = head
-  let stack = []
+    let arr = []
+    let curr = head
 
-  while (curr) {
-    stack.push(curr)
-    curr = curr.next
-  }
-
-  let len = stack.length
-
-  for (let i = 0; i < len; i++) {
-    if (i % 2 === 0) {
-      head.next = stack.shift()
-    }
-    else {
-      head.next = stack.pop()
+    while (curr) {
+        arr.push(curr)
+        curr = curr.next
     }
 
-    head = head.next
-  }
+    let len = arr.length
 
-  head.next = null
+    for (let i = 0; i < len; i++) {
+        if (i % 2 === 0) {
+            head.next = arr.shift()
+        }
+        else {
+            head.next = arr.pop()
+        }
+
+        head = head.next
+    }
+
+    head.next = null
 };
