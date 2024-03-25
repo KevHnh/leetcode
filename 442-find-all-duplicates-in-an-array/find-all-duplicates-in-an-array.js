@@ -3,11 +3,17 @@
  * @return {number[]}
  */
 var findDuplicates = function (nums) {
-    let map = {}
+    let set = new Set()
+    let ans = []
 
     for (let i = 0; i < nums.length; i++) {
-        map[nums[i]] ? map[nums[i]]++ : map[nums[i]] = 1
+        if (!set.has(nums[i])) {
+            set.add(nums[i])
+        }
+        else {
+            ans.push(nums[i])
+        }
     }
 
-    return Object.entries(map).filter((num) => num[1] === 2).map(num => num[0]);
+    return ans
 };
