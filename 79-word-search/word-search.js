@@ -15,9 +15,9 @@ var exist = function (board, word) {
 
         board[row][col] = null
         let res = dfs(row + 1, col, i + 1) ||
-                  dfs(row - 1, col, i + 1) ||
-                  dfs(row, col + 1, i + 1) ||
-                  dfs(row, col - 1, i + 1)
+            dfs(row - 1, col, i + 1) ||
+            dfs(row, col + 1, i + 1) ||
+            dfs(row, col - 1, i + 1)
         board[row][col] = word[i]
 
         return res
