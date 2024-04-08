@@ -3,21 +3,20 @@
  * @param {number[]} sandwiches
  * @return {number}
  */
-var countStudents = function (students, sandwiches) {
-    while (sandwiches.length > 0) {
-        if (students[0] === sandwiches[0]) {
-            students.shift()
-            sandwiches.shift()
-        }
-        else {
-            let temp = students.shift()
-            students.push(temp)
+var countStudents = function(students, sandwiches) {
+    let unableToEat = 0;
 
-            if (!students.includes(sandwiches[0])) {
-                return students.length
-            }
+    while (students.length > 0 && unableToEat < students.length) {
+        if (sandwiches[0] === students[0]) {
+            sandwiches.shift();
+            students.shift();
+            unableToEat = 0
+        } else {
+            let shiftStudent = students.shift();
+            students.push(shiftStudent);
+            unableToEat++
         }
     }
 
-    return students.length
+    return unableToEat;
 };
