@@ -16,6 +16,7 @@ var addOneRow = function (root, val, depth) {
     if (depth === 1) {
         let newRoot = new TreeNode(val);
         newRoot.left = root;
+        
         return newRoot;
     }
 
@@ -28,12 +29,15 @@ var addOneRow = function (root, val, depth) {
 
         for (let i = 0; i < numNodes; i++) {
             let node = queue.shift();
+
             if (node.left) {
                 queue.push(node.left);
             }
+
             if (node.right) {
                 queue.push(node.right);
             }
+
             if (level === depth - 1) {
                 let newLeft = new TreeNode(val);
                 let newRight = new TreeNode(val);
@@ -45,6 +49,6 @@ var addOneRow = function (root, val, depth) {
             }
         }
     }
-    
+
     return root;
 };
