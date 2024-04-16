@@ -13,42 +13,26 @@
  * @return {TreeNode}
  */
 var addOneRow = function (root, val, depth) {
-    if (depth === 1) {
-        let newRoot = new TreeNode(val);
-        newRoot.left = root;
-        
-        return newRoot;
-    }
-
-    let queue = [root];
-    let level = 0;
-
-    while (queue.length !== 0) {
-        level += 1
-        let numNodes = queue.length;
-
-        for (let i = 0; i < numNodes; i++) {
-            let node = queue.shift();
-
+    function dfs(node, curDepth) {
+        if (curDepth === depth - 1) {
+            const oldLeft = node.left;
+            const oldRight = node.right;
+            
+            node.left = new TreeNode(val, oldLeft);
+            node.right = new TreeNode(val, null, oldRight);
+        }
+        else {
             if (node.left) {
-                queue.push(node.left);
+                dfs(node.left, curDepth + 1);
             }
 
             if (node.right) {
-                queue.push(node.right);
-            }
-
-            if (level === depth - 1) {
-                let newLeft = new TreeNode(val);
-                let newRight = new TreeNode(val);
-                newLeft.left = node.left;
-                newRight.right = node.right;
-                node.left = newLeft;
-                node.right = newRight;
-
+                dfs(node.right, curDepth + 1);
             }
         }
+
+        return node;
     }
 
-    return root;
+    return depth === 1 ? new TreeNode(val, root) : dfs(root, 1);
 };
