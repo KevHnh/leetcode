@@ -4,31 +4,22 @@
  * @return {string[]}
  */
 var wordBreak = function(s, wordDict) {
-    const wordSet = new Set(wordDict);
-    const memo = new Map();
+    const solutions = [];
 
-    function dfs(start) {
-        if (memo.has(start)) {
-            return memo.get(start);
-        }
-        if (start === s.length) {
-            return [''];
-        }
-
-        const results = [];
-        for (let end = start + 1; end <= s.length; end++) {
-            const word = s.slice(start, end);
-            if (wordSet.has(word)) {
-                const subResults = dfs(end);
-                for (const subResult of subResults) {
-                    const space = subResult.length ? ' ' : '';
-                    results.push(word + space + subResult);
-                }
+    function search(query, prefix = '') {
+        for (let term of wordDict) {
+            if (query === term) {
+                solutions.push(prefix + term);
+                continue;
             }
-        }
-        memo.set(start, results);
-        return results;
-    }
 
-    return dfs(0);
+            if (!query.startsWith(term)) continue;
+
+            search(query.slice(term.length), prefix + term + ' ');
+        }
+    }
+    
+    search(s);
+
+    return solutions;
 };
