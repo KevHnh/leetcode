@@ -4,31 +4,31 @@
  * @return {string[]}
  */
 var wordBreak = function(s, wordDict) {
+    const wordSet = new Set(wordDict);
     const memo = new Map();
-    
-    function run(str) {
-        if(memo.has(str)) return memo.get(str);
 
-        if(!str.length) return [];
-        
-        const result = [];
-        
-        for (let word of wordDict) {
-            
-            if (str.startsWith(word)) {
-                const next = str.slice(word.length);
-                const paths = run(next); 
-
-                if (!paths.length && !next.length) result.push(word);
-                
-                result.push(...paths.map(rest => word + ' ' + rest));
-            }
+    function dfs(start) {
+        if (memo.has(start)) {
+            return memo.get(start);
+        }
+        if (start === s.length) {
+            return [''];
         }
 
-        memo.set(str, result);
-
-        return result;
+        const results = [];
+        for (let end = start + 1; end <= s.length; end++) {
+            const word = s.slice(start, end);
+            if (wordSet.has(word)) {
+                const subResults = dfs(end);
+                for (const subResult of subResults) {
+                    const space = subResult.length ? ' ' : '';
+                    results.push(word + space + subResult);
+                }
+            }
+        }
+        memo.set(start, results);
+        return results;
     }
-    
-    return run(s);
+
+    return dfs(0);
 };
