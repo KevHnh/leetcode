@@ -2,27 +2,21 @@
  * @param {number[]} nums
  * @return {number}
  */
-var specialArray = function(nums) {
-    nums = nums.sort((a,b) => a - b)
-    let n = nums.length
+var specialArray = function (nums) {
+    let totalX = 0;
+    nums = nums.sort((a, b) => a - b);
 
-    let l = 0
-    let r = n - 1
-
-    while (l <= r) {
-        let mid = Math.floor((l + r) / 2)
-        let x = n - mid
-
-        if (nums[mid] >= x && (mid === 0 || nums[mid - 1] < x)) {
-            return x
-        }
-        else if (nums[mid] > x) {
-            r = mid - 1
-        }
-        else {
-            l = mid + 1
+    for (let i = 0; i <= nums.length; i++) {
+        if (i <= nums[nums.length - i]) {
+            if (nums.length - i - 1 >= 0) {
+                if (i > nums[nums.length - i - 1]) {
+                    return i;
+                }
+            } else {
+                return i;
+            }
         }
     }
 
-    return -1
+    return -1;
 };
