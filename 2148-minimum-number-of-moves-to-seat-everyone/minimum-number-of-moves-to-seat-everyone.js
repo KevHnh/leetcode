@@ -10,10 +10,7 @@ var minMovesToSeat = function (seats, students) {
     let ans = 0
 
     for (let i = 0; i < seats.length; i++) {
-        let var1 = Math.max(seats[i], students[i])
-        let var2 = Math.min(seats[i], students[i])
-
-        ans += Math.abs(var1 - var2)
+        ans += Math.abs(seats[i] - students[i])
     }
 
     return ans
