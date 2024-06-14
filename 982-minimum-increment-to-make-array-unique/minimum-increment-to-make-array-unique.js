@@ -3,25 +3,23 @@
  * @return {number}
  */
 var minIncrementForUnique = function (nums) {
-    nums = nums.sort((a, b) => a - b)
-    let set = new Set()
-    let ans = 0
+    const max = Math.max(...nums);
+    const bucket = new Array(max + 1).fill(0);
 
     for (let i = 0; i < nums.length; i++) {
-        if (!set.has(nums[i])) {
-            set.add(nums[i])
-        }
-        else {
-            let temp = nums[i]
-            let prev = nums[i - 1]
-            let newVal = prev + 1
-            nums[i] = newVal
-            ans += (newVal - temp)
-            set.add(nums[i])
-        }
+        bucket[nums[i]]++;
     }
 
-    console.log(set)
+    let moves = 0;
 
-    return ans
+    for (let cur = 0, next = 0; cur <= max; cur++) {
+        while (bucket[cur]-- > 1) {
+            if (cur > next) next = cur + 1;
+            while (bucket[next]) next++;
+            moves += next - cur;
+            next <= max ? bucket[next]++ : next++;
+        }
+    }
+    
+    return moves;
 };
