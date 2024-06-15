@@ -6,32 +6,33 @@
  * @return {number}
  */
 var findMaximizedCapital = function (k, w, profits, capital) {
-    let projects = [];
-
-    for (let i = 0; i < profits.length; i++) {
-        projects.push([profits[i], capital[i]]);
+    if (w >= Math.max(...capital)) {
+        profits.sort((a, b) => b - a);
+        
+        return profits.slice(0, k).reduce((acc, num) => acc + num, w);
     }
 
-    projects.sort((a, b) => a[1] - b[1]);
+    for (let i = 0; i < k; i++) {
+        let maxProfit = -Infinity;
+        let projectIndex = -1;
 
-    let pq = new MaxPriorityQueue()
-    let pp = 0;
+        for (let j = 0; j < profits.length; j++) {
+            if (w < capital[j]) {
+                continue;
+            }
 
-    while (k > 0) {
-        while (pp < projects.length && projects[pp][1] <= w) {
-            pq.enqueue(pp, projects[pp][0]);
-            pp++;
+            if (profits[j] >= maxProfit) {
+                projectIndex = j;
+                maxProfit = profits[j];
+            }
         }
 
-        if (pq.size() === 0) {
+        if (projectIndex === -1) {
             break;
         }
 
-        let el = pq.dequeue();
-
-        w += el.priority;
-        k--;
+        capital[projectIndex] = Infinity;
+        w += maxProfit;
     }
-
     return w;
 };
