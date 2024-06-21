@@ -5,28 +5,27 @@
  * @return {number}
  */
 var maxSatisfied = function (customers, grumpy, minutes) {
-    let ans = 0;
     let total = 0;
-    const n = customers.length;
 
-    for (let i = 0; i < n; i++) {
-        total += (1 - grumpy[i]) * customers[i];
-    }
-
-    let windowAll = 0;
-    let windowPartial = 0;
-
-    for (let i = 0; i < n; i++) {
-        windowAll += customers[i];
-        windowPartial += (1 - grumpy[i]) * customers[i];
-        
-        if (i + 1 >= minutes) {
-            ans = Math.max(ans, total - windowPartial + windowAll);
-            let left = i - minutes + 1;
-            windowAll -= customers[left];
-            windowPartial -= (1 - grumpy[left]) * customers[left];
+    for (let i = 0; i < customers.length; i++) {
+        if (grumpy[i] === 0) {
+            total += customers[i];
+            customers[i] = 0;
         }
     }
 
-    return ans;
+    let maxIncrease = 0;
+    let increase = 0;
+
+    for (let i = 0; i < customers.length; i++) {
+        increase += customers[i];
+        
+        if (i >= minutes) {
+            increase -= customers[i - minutes];
+        }
+
+        maxIncrease = Math.max(maxIncrease, increase);
+    }
+
+    return total + maxIncrease;
 };
