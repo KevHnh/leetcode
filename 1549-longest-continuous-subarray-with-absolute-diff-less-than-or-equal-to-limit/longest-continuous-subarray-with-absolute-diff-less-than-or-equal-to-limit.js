@@ -3,35 +3,39 @@
  * @param {number} limit
  * @return {number}
  */
-var longestSubarray = function(nums, limit) {
-    let increase = [];
-    let decrease = [];
-    let max = 0;
-    let left = 0;
-    
-    for (let i = 0; i < nums.length; i++) {
-        while (increase.length && nums[i] < increase[increase.length - 1]) {
-            increase.pop();
-        }
-        increase.push(nums[i]);
-        
-        while (decrease.length && nums[i] > decrease[decrease.length - 1]) {
-            decrease.pop();
-        }
-        decrease.push(nums[i]);
-        
-        while (decrease[0] - increase[0] > limit) {
-            if (nums[left] === decrease[0]) {
-                decrease.shift();
-            }
-            if (nums[left] === increase[0]) {
-                increase.shift();
-            }
-            left++;
-        }
-        
-        max = Math.max(max, i - left + 1);
+var longestSubarray = function (nums, limit) {
+    if (nums.length <= 1) {
+        return 1
     }
-    
-    return max;
+
+    let maxN = []
+    let minN = [];
+    let l = 0;
+    let r;
+
+    for (r = 0; r < nums.length; r++) {
+        while (maxN.length && nums[r] > maxN[maxN.length - 1]) {
+            maxN.pop()
+        }
+
+        while (minN.length && nums[r] < minN[minN.length - 1]) {
+            minN.pop()
+        }
+
+        maxN.push(nums[r])
+        minN.push(nums[r])
+
+        if (maxN[0] - minN[0] > limit) {
+            if (nums[l] == maxN[0]) {
+                maxN.shift()
+            }
+            
+            if (nums[l] == minN[0]) {
+                minN.shift()
+            }
+            l++
+        }
+    }
+
+    return r - l
 };
