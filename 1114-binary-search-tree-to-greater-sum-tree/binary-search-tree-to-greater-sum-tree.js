@@ -11,17 +11,20 @@
  * @return {TreeNode}
  */
 var bstToGst = function (root) {
-    let sum = 0;
+    let acc = 0;
 
-    const traverse = (node) => {
-        if (node) {
-            traverse(node.right); 
-            sum += node.val; 
-            node.val = sum; 
-            traverse(node.left);  
+    function dfs(node) {
+        if (!node) { 
+            return;
         }
-    };
 
-    traverse(root);
+        dfs(node.right);
+        acc += node.val;
+        node.val = acc;
+        dfs(node.left);
+    }
+
+    dfs(root);
+
     return root;
 };
