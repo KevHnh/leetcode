@@ -2,17 +2,18 @@
  * @param {number[]} nums
  * @return {number}
  */
-var minDifference = function(nums) {
-    if (nums.length <= 4) {
+var minDifference = function (nums) {
+    nums.sort((a, b) => a - b);
+    let n = nums.length;
+
+    if (n <= 4) {
         return 0;
     }
 
-    nums.sort((a, b) => a - b);
-    let ans = nums[nums.length - 1] - nums[0];
+    let op1 = nums[n - 4] - nums[0];
+    let op2 = nums[n - 3] - nums[1];
+    let op3 = nums[n - 2] - nums[2];
+    let op4 = nums[n - 1] - nums[3];
 
-    for (let i = 0; i <= 3; i++) {
-        ans = Math.min(ans, nums[nums.length - (3 - i) - 1] - nums[i]);
-    }
-    
-    return ans;
+    return Math.min(op1, op2, op3, op4);
 };
