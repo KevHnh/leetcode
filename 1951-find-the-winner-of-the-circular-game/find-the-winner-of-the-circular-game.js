@@ -4,22 +4,11 @@
  * @return {number}
  */
 var findTheWinner = function(n, k) {
-    let queue = []
+    let winner = 0;
 
-    for (let i = 1; i <= n; i++) {
-        queue.push(i)
+    for (let i = 2; i <= n; i++) {
+        winner = (winner + k) % i;
     }
 
-    while (queue.length > 1) {
-        let deleteCount = k - 1
-
-        while (deleteCount > 0) {
-            queue.push(queue.shift())
-            deleteCount--
-        }
-
-        queue.shift()
-    }
-
-    return queue.shift() 
+    return winner + 1
 };
