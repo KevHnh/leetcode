@@ -2,19 +2,19 @@
  * @param {number[]} nums
  * @return {number}
  */
-var longestConsecutive = function(nums) {
-    let set = new Set(nums)
-    let ans = 0
+var longestConsecutive = function (nums) {
+    if (nums.length === 0) return 0;
 
-    for (let i = 0; i < nums.length; i++) {
-        if (!set.has(nums[i] - 1)) {
-            let size = 0
-            while (set.has(nums[i] + size)) {
-                size++
-                ans = Math.max(ans, size)
-            }
-        }
+    nums = new Int32Array(nums).sort();
+
+    let max = 1, window = 1;
+
+    for (let i = 1; i < nums.length; i++) {
+        if (nums[i - 1] == nums[i]) continue;
+        
+        window = nums[i - 1] + 1 === nums[i] ? window + 1 : 1;
+        max = Math.max(window, max);
     }
 
-    return ans
+    return max;
 };
