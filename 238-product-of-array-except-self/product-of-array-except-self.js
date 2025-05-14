@@ -13,7 +13,7 @@ var productExceptSelf = function (nums) {
 
     product = 1
 
-    for (let i = nums.length - 1; i >= 0; i--) {
+    for (i = nums.length - 1; i >= 0; i--) {
         res[i] *= product
         product *= nums[i]
     }
