@@ -3,18 +3,22 @@
  * @return {number}
  */
 var longestConsecutive = function (nums) {
-    if (nums.length === 0) return 0;
+    const set = new Set(nums);
+    let longestStreak = 0;
 
-    nums = new Int32Array(nums).sort();
+    for (const num of set) {
+        if (!set.has(num - 1)) {
+            let currentNum = num;
+            let currentStreak = 1;
 
-    let max = 1, window = 1;
+            while (set.has(currentNum + 1)) {
+                currentNum++;
+                currentStreak++;
+            }
 
-    for (let i = 1; i < nums.length; i++) {
-        if (nums[i - 1] == nums[i]) continue;
-        
-        window = nums[i - 1] + 1 === nums[i] ? window + 1 : 1;
-        max = Math.max(window, max);
+            longestStreak = Math.max(longestStreak, currentStreak);
+        }
     }
 
-    return max;
+    return longestStreak;
 };
