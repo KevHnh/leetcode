@@ -12,8 +12,7 @@ var twoSum = function(nums, target) {
         if (map[comp] !== undefined) {
             return [map[comp], i]
         }
-
+        
         map[nums[i]] = i
-
     }
 };
