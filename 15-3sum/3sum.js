@@ -2,22 +2,21 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-var threeSum = function (nums) {
-    let ans = []
-
+var threeSum = function(nums) {
     if (nums.length < 3) {
-        return ans
+        return []
     }
 
     nums = nums.sort((a, b) => a - b)
+    let ans = []
 
     for (let i = 0; i < nums.length; i++) {
-        if (i > 0 && nums[i] === nums[i - 1]) {
-            continue
-        }
-
         if (nums[i] > 0) {
             break
+        }
+        
+        if (nums[i] === nums[i - 1] && i > 0) {
+            continue
         }
 
         let left = i + 1
@@ -39,11 +38,11 @@ var threeSum = function (nums) {
                 left++
                 right--
             }
-            else if (curr < 0) {
-                left++
+            else if (curr > 0) {
+                right--
             }
             else {
-                right--
+                left++
             }
         }
     }
