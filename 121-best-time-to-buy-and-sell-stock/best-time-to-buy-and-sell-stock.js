@@ -3,19 +3,20 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
+    let max = 0
     let left = 0
-    let right = 1
-    let ans = 0
+    let right = 0
 
     while (right < prices.length) {
-        ans = Math.max(prices[right] - prices[left], ans)
+        let curr = prices[right] - prices[left] 
+        max = Math.max(max, curr)
 
-        if (prices[left] >= prices[right]) {
+        if (prices[left] > prices[right]) {
             left = right
         }
 
         right++
     }
 
-    return ans
+    return max
 };
