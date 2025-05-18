@@ -7,16 +7,17 @@ var threeSum = function(nums) {
         return []
     }
 
-    nums = nums.sort((a, b) => a - b)
     let ans = []
 
+    nums = nums.sort((a,b) => a - b)
+
     for (let i = 0; i < nums.length; i++) {
+        if (nums[i] === nums[i - 1]) {
+            continue
+        }
+
         if (nums[i] > 0) {
             break
-        }
-        
-        if (nums[i] === nums[i - 1] && i > 0) {
-            continue
         }
 
         let left = i + 1
